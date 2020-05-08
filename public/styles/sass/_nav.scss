@@ -1,0 +1,38 @@
+.navbar{
+    color:white;
+    background-color: red;
+    font-size: 1.6rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+li.nav-item.dropdown{
+  list-style-type: none;
+  color: white;
+}
+ .dropdown-item{
+    font-size: 1.6rem;
+//   background: #ccc;
+  }
+
+ .nav-link, .nav-link:hover{
+   font-size: 2rem ;
+   color: white;
+ }
+
+ .navbar-brand{
+   color: white;
+ }
+
+//.navbar-toggler{
+//  background: #000000;
+////  border: 1px solid white;
+////  padding: 1rem;
+//
+//  & .navbar-toggler-icon{
+////    color: #ffffff;
+////    font-size: 1rem;
+//
+//  }
+//}
+

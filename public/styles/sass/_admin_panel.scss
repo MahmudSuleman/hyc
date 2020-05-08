@@ -1,0 +1,60 @@
+.admin{
+  min-height: 50rem;
+  margin-top: 2rem;
+}
+
+
+.panel-card-link{
+  font-size: 3rem;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: .5rem;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+
+  &:hover{
+    color: white;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.64);
+  }
+
+
+
+  & span{
+    display: block;
+    text-align: center;
+
+
+  }
+}
+
+.search-area{
+  margin: 5rem 0;
+//  border: 1px solid red;
+
+
+
+}
+
+.search-form{
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 1rem 5rem;
+
+
+  & form{
+    width: 30rem;
+    margin: 0 auto;
+  }
+}
+
+.display-area{
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  min-height: 50rem;
+  padding:2rem;
+  overflow-y: scroll;
+
+}

@@ -1,0 +1,18 @@
+*,
+*:before,
+*:after{
+  padding: 0;
+  margin:0;
+  box-sizing: border-box;
+
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body{
+  font-size: 1.6rem;
+  padding: 2rem;
+  // background-color: rgba(204, 204, 204, 0.26);
+}

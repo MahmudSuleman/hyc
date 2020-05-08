@@ -1,0 +1,23 @@
+.heading{
+	font-size: 3rem;
+	text-transform: uppercase;
+	margin: 4rem auto;
+	text-align: center;	
+	font-weight: 100;
+	letter-spacing:20px;
+}
+
+.slide-show{
+	width: 100%;
+}
+
+.product-box{
+	margin-bottom: 5rem;
+  width: 25rem;
+  height: 25rem;
+
+	& img{
+		width: 100%;
+        max-height: 10rem;
+	}
+}

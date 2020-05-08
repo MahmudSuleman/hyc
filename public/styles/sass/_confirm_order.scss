@@ -1,0 +1,27 @@
+.address-box{
+  background: rgba(204, 204, 204, 0.20);
+  padding: 2rem;
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+
+
+
+}
+
+.confirm-order-product-box{
+
+//  height: 30rem;
+  background: #a3cccc;
+  padding:5rem 10rem;
+  border-radius: .5rem;
+  margin: 5rem 0;
+    & img{
+      width: 10rem;
+      height: 10rem;
+      border-radius: .3rem;
+    }
+
+
+}

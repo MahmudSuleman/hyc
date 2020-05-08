@@ -1,0 +1,18 @@
+.btn{
+  font-size: 1.6rem;
+
+
+  &-detail{
+    border:1px solid green;
+    border-radius: 5px;
+
+    &:hover{
+      color:white;
+      background: green;
+    }
+
+    &:focus{
+      outline:none;
+    }
+  }
+}
