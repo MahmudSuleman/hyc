@@ -14,27 +14,22 @@ include_once '../private/includes/header_nav.php';
 if(isset($_GET['product']))
 {
     $product = h($_GET['product']) ?? '';
-//    $cat = h($_GET['category']) ?? '';
-
     $products = Product::findSearchedProducts($product) ?? 'no results';
 }
-
-$products2 = Product::allProducts();
+    $products2 = Product::allProducts();
 
 
 ?>
-<div class="container">
 
-    <h2 class="heading">available products</h2>
 
     <?php if(!empty($products)){?>
-    <div class="container">
+        <h2 class="heading">available products</h2>
+    <div class="container product">
         <div class="row justify-content-center">
             <?php foreach($products as $product => $data): ?>
-                <!-- just a dummy data for testing -->
                 <div class="col-md-4 col-sm-6">
                     <div class="product-box">
-                        <img src="<?= $data['image']?>" alt="product">
+                        <img class="product_image" src="<?= $data['image']?>" alt="product">
                         <p><?= $data['name'];?></p>
                         <p>Price: GHC<?= $data['price'];?></p>
                         <a href="detail.php?product_id=<?= $data['product_id'] ?>" class="btn btn-detail" >Product Detail</a>
@@ -59,7 +54,7 @@ $products2 = Product::allProducts();
                 <!-- just a dummy data for testing -->
                 <div class="col-md-4 col-sm-6">
                     <div class="product-box">
-                        <img src="<?= $data['image']?>" alt="product">
+                        <img class="product_image" src="<?= $data['image']?>" alt="product">
                         <p><?= $data['name'];?></p>
                         <p>Price: GHC<?= $data['price'];?></p>
                         <a href="detail.php?product_id=<?= $data['product_id'] ?>" class="btn btn-detail" >Product Detail</a>
@@ -70,7 +65,7 @@ $products2 = Product::allProducts();
         </div>
     </div>
 
-</div>
+
 
 <?php
 

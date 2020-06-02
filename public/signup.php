@@ -7,6 +7,7 @@ require_once '../private/includes/header.php';
 
 if (isset($_POST['signup'])) 
 {
+//    die('clicked');
 	$arg = [];
 	$arg['userName'] = $_POST['userName'];
 	$arg['firstName'] = $_POST['firstName'];
@@ -20,19 +21,15 @@ if (isset($_POST['signup']))
 
 	if ($_POST['password2'] == $_POST['password'])
 	{
-
-
-		var_dump($_POST);
-
 		$user = new User($arg);
 		$user->setPassword($arg['password']);
-		if ($user->create()) {
-			echo 'user created';
-		}
-		else{
-			echo 'failed';
-		}
-	}
+        $user->create();
+        redirect_to(url_for('login.php'));
+	}else{
+        global $errors;
+        array_push($errors, 'password do not match...');
+    }
+
 
 	
 }
@@ -43,6 +40,7 @@ if (isset($_POST['signup']))
  <div class="container">
  	<div class="login">
  		<h2 class="form-title">Signup Here</h2>
+        <?php include_once 'errors.php'; ?>
  		<form action="signup.php" method="post">
  			<div class="form-group">
  				<input required type="text" class="form-control" id="userName" name="userName" placeholder="Enter Username">

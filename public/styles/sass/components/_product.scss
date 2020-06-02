@@ -1,0 +1,28 @@
+.product{
+
+	min-height: 400px;
+
+	&-box {
+		
+		margin: 1rem;
+		min-height: 25rem;
+		border:1px solid black;
+		padding:1rem; 
+		border-radius: 1rem;
+
+      &:hover {
+        transform: scale(1.1);
+        margin: 1rem;
+      }
+
+	}
+
+	&_image{
+		width: 100%;
+	}
+
+//  &:hover{
+//    transform: scale(1.5)
+//  }
+
+}

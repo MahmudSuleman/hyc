@@ -1,1 +1,26 @@
 2020-04-18 07:04:05 :: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens: 704
+2020-05-20 08:05:37 :: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'chamtooni' for key 'PRIMARY': 532
+2020-05-20 08:05:34 :: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'chamtooni' for key 'PRIMARY': 532
+2020-05-20 08:05:45 :: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'chamtooni' for key 'PRIMARY': 532
+2020-05-20 08:05:45 :: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'chamtooni' for key 'PRIMARY': 532
+2020-05-20 09:05:15 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 405
+2020-05-20 09:05:18 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-20 09:05:32 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-20 09:05:00 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-20 09:05:52 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-20 09:05:57 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-20 09:05:00 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-20 09:05:01 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-26 06:05:41 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:21 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:16 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:24 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:26 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:28 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:29 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:31 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:32 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:33 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:34 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:35 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-27 07:05:47 :: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens: 704

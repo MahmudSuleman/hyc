@@ -1,5 +1,6 @@
 <?php
 include_once '../../private/init.php';
+//require_admin_login();
 
 $title = 'Admin Homepage';
 include_once SHARED_PATH . '/header.php';
@@ -25,12 +26,6 @@ include_once SHARED_PATH . '/header_nav.php';
         </div>
 
     </div>
-
-<?php
-include_once SHARED_PATH . '/footer_nav.php';
-include_once SHARED_PATH . '/footer.php';
-?>
-
 <script>
     var name_input = document.getElementById('search_input');
     var name = document.getElementById('search_input').value;
@@ -40,12 +35,17 @@ include_once SHARED_PATH . '/footer.php';
         xhr.open('get', 'search_data.php?name='+ name, true);
         xhr.onreadystatechange = function(){
             if(xhr.readyState == 4 && xhr.status == 200){
-//                display.innerHTML = 'hello';
                 display.innerHTML = xhr.responseText;
             }
         }
         xhr.send()
     }
 
-    name_input.addEventListener('keyup', search);
+    name_input.addEventListener('change', search);
 </script>
+
+<?php
+include_once SHARED_PATH . '/footer_nav.php';
+include_once SHARED_PATH . '/footer.php';
+?>
+

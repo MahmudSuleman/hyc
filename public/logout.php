@@ -8,7 +8,7 @@
 
 require_once '../private/init.php';
 
-if(isset($_SESSION['userName'])){
+if(isset($_SESSION['username'])){
     session_unset();
     session_destroy();
     header("location: index.php");

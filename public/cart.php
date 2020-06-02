@@ -10,8 +10,8 @@ require_once '../private/init.php';
 require_once '../private/includes/header.php';
 require_once '../private/includes/header_nav.php';
 
-if (isset($_SESSION['userName'])) {
-    $product = Product::cartProduct($_SESSION['userName']);
+if (isset($_SESSION['username'])) {
+    $product = Product::cartProduct($_SESSION['username']);
     if(!empty($product))
         $num_cart_items = count($product);
     else
@@ -33,7 +33,7 @@ if (isset($_SESSION['userName'])) {
             <?php } else { ?>
                 <div class="cart-products-1">
                 <form action="">
-                <table class="table table-hover table-responsive">
+                <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>Product</th>

@@ -19,29 +19,18 @@ try {
         $arg['lastName'] = $_POST['lastName'];
         $arg['email'] = $_POST['email'];
         $arg['phone'] = $_POST['phone'];
-
-        $town = $_POST['town'];
-        $area = $_POST['area'];
-        $street = $_POST['street'];
-        $land = $_POST['landmark'];
-
-        $arg['address'] = $town . ", ". $area. ", ". $street.', '. $land ;
-        $addr = explode(', ', $arg['address']);
+        $arg['address'] = $_POST['address'];
 
 
         $user = new User($arg);
-        if($user->updateUser())
-        {
-            if($_SERVER['HTTP_REFERER'] != 'http://localhost:9000/public/confirmOrder.php')
-            {
-                redirect_to('confirmOrder.php');
-            }else{
-                header('location: profile.php');
-            }
-        }
+        $user->updateUser();
+
+        echo "<script>confirm('Profile detail updated...');</script>";
+
     }
-    $user = User::findUser($_SESSION['userName']);
-    $addr = explode(',',$user['address']);
+    $user = User::findUser($_SESSION['username']);
+//    var_dump($user);
+
 
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -53,45 +42,29 @@ try {
             <h2 class="form-title">Update Profile</h2>
             <form action="profile.php" method="post">
                 <div class="form-group">
-                    <input required type="text" class="form-control" id="firstName" name="firstName" value="<?= $user['firstName']?>">
                     <label for="firstName">FirstName</label>
+                    <input required type="text" class="form-control" id="firstName" name="firstName" value="<?= $user['firstName']?>">
                 </div>
 
                 <div class="form-group">
-                    <input required type="text" class="form-control" id="lastName" name="lastName" value="<?= $user['lastName']?>">
                     <label for="lastName">lastName</label>
+                    <input required type="text" class="form-control" id="lastName" name="lastName" value="<?= $user['lastName']?>">
                 </div>
 
                 <div class="form-group">
-                    <input required type="email" class="form-control" id="email" name="email" value="<?= $user['email']?>">
                     <label for="email">Email</label>
+                    <input required type="email" class="form-control" id="email" name="email" value="<?= $user['email']?>">
                 </div>
 
                 <div class="form-group">
-                    <input required type="text" class="form-control" id="phone" name="phone" value="<?= $user['phone']?>">
                     <label for="phone">Phone</label>
+                    <input required type="text" class="form-control" id="phone" name="phone" value="<?= $user['phone']?>">
                 </div>
 
                 <div class="form-group">
-                    <input required type="text" class="form-control" id="town" name="town" value="<?= $addr[0] = trim($addr[0]) ?? '';?>">
-                    <label for="town">Town</label>
+                    <label  for="address">Address(City, Area, Street name, landmark)</label>
+                    <input class="form-control" name="address" value="<?= $user['address']?>">
                 </div>
-
-                <div class="form-group">
-                    <input required type="text" class="form-control" id="area" name="area" value="<?= $addr[1] = trim($addr[1]) ?? ''; ?>">
-                    <label for="area">Area</label>
-                </div>
-
-                <div class="form-group">
-                    <input required type="text" class="form-control" id="street_name" name="street" value="<?= $addr[2] = trim($addr[2]) ?? '';?>">
-                    <label for="street_name">Street name</label>
-                </div>
-
-                <div class="form-group">
-                    <input required type="text" class="form-control" id="landmark" name="landmark" value="<?= $addr[3] = trim($addr[3]) ?? '';?>">
-                    <label for="landmark">Landmark</label>
-                </div>
-
 
                 <div class="form-group">
                     <button class="btn btn-outline-success btn-block" name="update" type="submit">Update Profile</button>

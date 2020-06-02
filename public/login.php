@@ -9,7 +9,7 @@
 require_once '../private/init.php';
 $title = 'Login';
 require '../private/includes/header.php';
-require '../private/includes/header_nav.php';
+//require '../private/includes/header_nav.php';
 
 if(isset($_POST['submit'])){
 	if(User::signin($_POST['userName'], $_POST['password'])){
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
 <div class="container">
 	<div class="login">
 		<h2 class="form-title">Login here</h2>
-
+        <?php include_once 'errors.php'; ?>
 		<form action="login.php" method="post">
 			<div class="form-group">
 				<label for="username">Username/Email</label>
@@ -44,6 +44,6 @@ if(isset($_POST['submit'])){
 </div>
 
 <?php
-require_once '../private/includes/footer_nav.php';
+//require_once '../private/includes/footer_nav.php';
 require_once '../private/includes/footer.php';
 ?>

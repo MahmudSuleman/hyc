@@ -16,17 +16,13 @@ $products = Product::allProducts();
 
 
 ?>
-    <!--    the whole page wrapped in a container class-->
-<div class="container-fluid">
-
-
 
 <!--    header section definition-->
 <div class="row header">
 
 
 <!--        slide show section definition-->
-    <div class="slide-show">
+    <div class="slide-show container">
 
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -37,21 +33,21 @@ $products = Product::allProducts();
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="img/consult.jpg" alt="First slide">
+                    <img  class="d-block w-100 c_img" src="img/baby_mama.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>Baby and Mama stuffs</h3>
                         <p>Buy all your baby stuff with us at an affordable price</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="img/consult.jpg" alt="Second slide">
+                    <img class="d-block w-100 c_img" src="img/men_suit1.jpg" alt="Second slide">
                     <div class="carousel-caption ">
                         <h3>Men suits and wrist watches</h3>
                         <p>Look gorgeous in our varieties of men wrist watches. Try re-branding yourself</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="img/consult.jpg" alt="Third slide">
+                    <img class="d-block w-100 c_img" src="img/women_hb1.jpg" alt="Third slide">
                     <div class="carousel-caption">
                         <h3>Ladies hand bags</h3>
                         <p>Cute ladies hand bags are also available in our store</p>
@@ -73,13 +69,13 @@ $products = Product::allProducts();
 
 <h2 class="heading">featured products</h2>
 
-<div class="container">
+<div class="container product">
     <div class="row justify-content-center">
         <?php foreach($products as $product => $data): ?>
             <!-- just a dummy data for testing -->
         <div class="col-md-4 col-sm-6">
             <div class="product-box">
-                <img src="<?= $data['image']?>" alt="product">
+                <img class="img-fluid " src="<?= $data['image']?>" alt="product">
                 <p><?= $data['name'];?></p>
                 <p>Price: GHC<?= $data['price'];?></p>
                 <a href="detail.php?product_id=<?= $data['product_id'] ?>" class="btn btn-detail" >Product Detail</a>
@@ -88,7 +84,6 @@ $products = Product::allProducts();
         </div>
     <?php endforeach ?>
     </div>
-</div>
 </div>
 <?php 
 

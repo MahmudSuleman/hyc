@@ -1,0 +1,5 @@
+2020-05-20 09:05:27 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
+2020-05-26 06:05:23 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:24 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:20 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
+2020-05-26 06:05:41 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478

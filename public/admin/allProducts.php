@@ -1,7 +1,8 @@
 <?php
 include_once '../../private/init.php';
+//require_admin_login();
 
-$title = 'Admin Homepage';
+$title = 'Product';
 include_once SHARED_PATH . '/header.php';
 include_once SHARED_PATH . '/header_nav.php';
 

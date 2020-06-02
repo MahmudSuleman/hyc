@@ -7,7 +7,7 @@ $dsn = ['host'=>'localhost', 'dbname'=>'hyc', 'username'=>'root', 'password'=>''
 $db = new PdoWrapper($dsn);
 $helper = new PDOHelper($dsn);
 
-$db->setErrorLog(true);
+//$db->setErrorLog(true);
 
 
 
@@ -60,5 +60,17 @@ function redirect_to($location){
     return header('Location: '.$location);
 }
 
+function require_login(){
+    if(empty($_SESSION['username']))
+        redirect_to(url_for('/login.php'));
+}
+//function require_admin_login(){
+//    if($_SESSION['usertype'] != 'admin'){
+//        redirect_to(url_for('/index.php'));
+//    }
+//
+//}
 
+$errors = [];
 
+//die("helo");

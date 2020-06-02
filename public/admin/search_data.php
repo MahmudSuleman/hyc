@@ -1,16 +1,14 @@
 <?php
 include_once '../../private/init.php';
+//require_admin_login();
 $name = $_GET['name'] ?? '';
-$sql = "SELECT * FROM products WHERE  name like ?";
+$sql = "SELECT * FROM products WHERE  name like '%".$name."%'";
 global $db;
-$products = $db->pdoQuery($sql, ['%'.$name .'%'])->aResults;
+$products = $db->pdoQuery($sql)->aResults;
 
-//print_r($product);
-//
-//echo 'helloe';
-$data='';
+    $data = '';
 
-$data .= "<table class=\"table table-striped table-responsive-sm\">
+    $data .= "<table class=\"table table-striped table-responsive-sm\">
     <tr>
         <td>Name</td>
         <td>Description</td>
@@ -26,29 +24,28 @@ $data .= "<table class=\"table table-striped table-responsive-sm\">
             <td>";
 
 
-
-    $data .= $product['name'];
-    $data .= "</td>
+        $data .= $product['name'];
+        $data .= "</td>
             <td>";
-    $data .= $product['description'];
-    $data .= "</td>
+        $data .= $product['description'];
+        $data .= "</td>
             <td>";
-    $data .= $product['quantity'];
-    $data .= "</td>
+        $data .= $product['quantity'];
+        $data .= "</td>
             <td>";
-    $data .= $product['price'];
-    $data .= "</td>
+        $data .= $product['price'];
+        $data .= "</td>
             <td><a href=\"editProduct.php?product_id=";
-    $data .= $product['product_id'];
-    $data .= "\" class=\"btn btn-outline-primary\">Update</a></td>
+        $data .= $product['product_id'];
+        $data .= "\" class=\"btn btn-outline-primary\">Update</a></td>
             <td><a href=\"deleteProduct.php?product_id=";
-    $data .= $product['product_id'];
-    $data .= "\" class=\"btn btn-outline-danger\">Delete</a></td>
+        $data .= $product['product_id'];
+        $data .= "\" class=\"btn btn-outline-danger\">Delete</a></td>
         </tr>";
-}
+    }
 
 
-$data .= "</table>";
+    $data .= "</table>";
 
 
 

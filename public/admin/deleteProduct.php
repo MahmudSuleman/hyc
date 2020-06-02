@@ -7,6 +7,7 @@
  */
 
 include_once '../../private/init.php';
+//require_admin_login();
 
 $product = h($_GET['product_id']) ?? '';
 

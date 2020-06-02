@@ -1,4 +1,4 @@
-<div id="navigation">
+<div id="navigation" class="container">
 <nav class="navbar navbar-dark bg-dark navbar-expand-md sticky-top" id="navigation">
   <a class="navbar-brand" href="<?php echo url_for('index.php')?>" style="font-size: 2rem;">HYC</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,11 +15,11 @@
           Men
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="findProduct.php?product=suits&category=men">Suits</a>
+          <a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=suit&category=men')?>">Suits</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="findProduct.php?product=shoe&category=men">Shoes</a>
+          <a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=shoe&category=men')?>">Shoes</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="findProduct.php?product=watch&category=men">Wrist Watches</a>
+          <a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=watch&category=men')?>">Wrist Watches</a>
           <div class="dropdown-divider"></div>
         </div>
       </li>
@@ -29,11 +29,12 @@
           Women
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="findProduct.php?product=bag&category=women">Hand Bags</a>
+          <a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=bag&category=women')?>">Hand Bags</a>
+          <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=hijab&category=women')?>">Hijabs</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="findProduct.php?product=shoe&category=women">Shoes</a>
+          <a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=shoe&category=women')?>">Shoes</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="findProduct.php?product=veil&category=women">Veils</a>
+          <a class="dropdown-item" href="<?php echo url_for('/findProduct.php?product=veil&category=women')?>">Veils</a>
           <div class="dropdown-divider"></div>
         </div>
       </li>
@@ -50,25 +51,34 @@
           <a class="dropdown-item" href="<?php echo url_for('findProduct.php?product=t-shirt&category=baby')?>">T-Shirts</a>
         </div>
       </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="<?php echo url_for('/search.php')?>">search <i class="fa fa-search"></i></a>
+        </li>
 
 
 
     </ul>
       <?php
-      if(isset($_SESSION['userName'])){?>
+      if(isset($_SESSION['username'])){?>
 
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-user"></i>
 
-                <?php echo $_SESSION['userName'];?>
+                <?php echo $_SESSION['username'];?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<?php echo url_for('cart.php') ?>"><i class="fa fa-shopping-cart"></i>Cart</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<?php echo url_for('profile.php')?>"><i class="fa fa-user"></i>Profile</a>
             <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<?php echo url_for('myProduct.php')?>"><i class="fa fa-user"></i>My Products</a>
+            <div class="dropdown-divider"></div>
+
+            <?php if($_SESSION['usertype'] == 'admin'): ?>
+<!--                user should not see the admin link if they are not an admin...-->
             <a class="dropdown-item" href="<?php echo  url_for('admin/index.php') ?>"><i class="fa fa-plus"></i>Admin</a>
+            <?php endif ?>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo url_for('logout.php')?>"><i class="fa fa-lock"></i>Logout</a>
 

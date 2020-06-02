@@ -1,6 +1,5 @@
-<footer class="footer">
-
-    <div class="container-fluid p-m">
+         <div class="container-fluid p-m">
+            <footer class="footer">   
         <div class="row">
         	<div class="col-sm-6">
 

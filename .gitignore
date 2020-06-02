@@ -1,0 +1,7 @@
+# Specify filepatterns you want git to ignore.
+
+node_modules/
+.idea
+test.php
+index1.php
+*.xml

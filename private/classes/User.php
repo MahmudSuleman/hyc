@@ -51,46 +51,32 @@ class User
 
     public function create()
     {
-        // check if user already exist
-//        $x = self::findUser($this->userName);
-        if(!empty($x))
+        global $db;
+        $db->select('users', [], ['userName' => $this->userName]);
+        if(empty($db->aResults))
         {
-            echo 'user already exist, try one of these suggestions';
-            // print_r(self::suggestUserName());
-            echo '<ul>';
-            foreach (self::suggestUserName() as $value) {
-                echo "<li>$value</li>";
-            }
-            echo '<ul>';
-
+//            if the current user is not in the database, create them..
+            $data = [
+                'userName' => $this->userName,
+                'firstName' => $this->firstName,
+                'lastName' => $this->lastName,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'password'=> $this->password,
+                'address' => $this->address,
+                'type' => $this->type
+            ];
+            return $db->insert('users', $data);
+        }else{
+            global $errors;
+            array_push($errors, "failed to create user, username already exist");
         }
-        else
-        {
-            $con = Db::connect();
-            $sql = "INSERT INTO user(userName, firstName, lastName, email, phone, address, type,password)  VALUES(:userName, :firstName, :lastName, :email, :phone, :address, :type, :password)";
-            $stm = $con->prepare($sql);
-
-            $stm->bindParam(':userName', $this->userName);
-            $stm->bindParam(':firstName', $this->firstName);
-            $stm->bindParam(':lastName', $this->lastName);
-            $stm->bindParam(':email', $this->email);
-            $stm->bindParam(':phone', $this->phone);
-            $stm->bindParam(':address', $this->address);
-            $stm->bindParam(':type', $this->type);
-            $stm->bindParam(':password', $this->password);
-            return $stm->execute();
-
-        }
-
-
-
-    	
     }
 
     public static function findUser($userName)
     {
         global $db;
-        return $db->pdoQuery('select * from user where userName = ?', [$userName])->result();
+        return $db->pdoQuery('select * from users where userName = ?', [$userName])->result();
 
 
     }
@@ -111,21 +97,23 @@ class User
     {
 
         $user = self::findUser($userName);
-        if($user && password_verify($password, $user['password']))
+        if(!empty($user) && password_verify($password, $user['password']))
         {
             // set session variable and log user in
-            $_SESSION['userName'] = $userName;
+            $_SESSION['username'] = $userName;
+            $_SESSION['usertype'] = $user['type'];
             return true;
+        }else{
+            global $errors;
+            array_push($errors, "Incorrect username and password combination...");
         }
+
 
     }
 
     public function updateUser()
     {
         global $db;
-//        $con = Db::connect();
-//        $sql = "UPDATE user SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone, address = :address WHERE userName = :userName";
-//        $stmt = $con->prepare($sql);
         $data = [
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
@@ -134,10 +122,23 @@ class User
             'address'=>$this->address,
         ];
 
-        $result = $db->update('user', $data, ['userName'=>$_SESSION['userName']]) ? true : false;
-//        $db->showQuery();
+        $result = $db->update('users', $data, ['userName'=>$_SESSION['username']]) ? true : false;
         return $result;
 
+    }
+
+
+    public static function usertype(){
+        global $db;
+        $db->select('users', ['type'], ['username' => $_SESSION['userName']] );
+        $result = $db->aResults[0];
+        return $result['type'];
+
+    }
+
+    public static function makeAdmin($username){
+        global $db;
+        return $db->update('users', ['type'=>'admin'], ['username'=>$username]);
     }
 
 

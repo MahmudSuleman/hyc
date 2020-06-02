@@ -13,10 +13,20 @@ $title = 'Review Product And Confirm Order';
 include SHARED_PATH . '/header.php';
 include SHARED_PATH . '/header_nav.php';
 
-$user = User::findUser($_SESSION['userName']);
+$user = User::findUser($_SESSION['username']);
 
 $product = Product::findProduct($_SESSION['product_id']);
-$_SESSION['qty'] = $_GET['qty'];
+$qty = $_GET['qty'] ?? 0;
+$total = $product['price'] * $qty;
+
+if(isset($_GET['submit'])){
+    $username = $_SESSION['username'];
+    $product_id = $product['product_id'];
+    $qty = $_GET['qty'];
+    Product::reduceProductCount($qty, $product_id);
+    Purchase::addPurchase($username, $product_id, $product['price'], $qty,$total );
+    redirect_to(url_for('thankyou.php'));
+}
 
 ?>
 <div class="container">
@@ -27,19 +37,21 @@ $_SESSION['qty'] = $_GET['qty'];
            <p><?= $user['address']; ?></p>
 
            <p style="font-style: italic;">You can consider updating your personal information
-               <a href="<?php echo url_for('profile.php') ?>">here</a> before confirming the order.</p>
+               <a href="<?php echo url_for('profile.php') ?>" target="_blank">here</a> before confirming the order.</p>
        </div>
 
 
         <div class="confirm-order-product-box center">
-            <img src="<?php echo $product['image']; ?>" alt="product"/>
-            <p><?php echo $product['name'];?></p>
-            <p><?php echo $product['description']?></p>
-            <p>Unit Price (GHC): <?php echo $product['price'] ?></p>
-            <p>Quantity:   <?php echo $_SESSION['qty']?></p>
-            <p>Total Price (GHC): <?php echo $product['price'] * $_SESSION['qty'] ?></p>
+            <form action="confirmOrder.php" method="get">
+                <img src="<?php echo $product['image']; ?>" alt="product"/>
+                <p><?php echo $product['name'];?></p>
+                <p><?php echo $product['description']?></p>
+                <p>Unit Price (GHC): <?php echo $product['price'] ?></p>
+                <p>Quantity: <input type="number" disabled value="<?php echo $qty; ?>" name="qty"/></p>
+                <p>Total Price (GHC): <?php echo $total?></p>
+                <button class="btn btn-primary" type="submit" name="submit">Confirm Order</button>
+            </form>
 
-            <a href="<?php echo url_for('payment.php') ?>" class="btn btn-outline-primary">Confirm Order</a>
         </div>
 </div>
 

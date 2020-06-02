@@ -33,7 +33,7 @@ class Product {
         try
         {
             $con = Db::connect();
-            $sql = "SELECT * FROM  products";
+            $sql = "SELECT * FROM  products WHERE quantity > 0";
             $result = $con->query($sql);
             if($result)
             {
@@ -85,7 +85,7 @@ class Product {
     {
         try {
             $products = [];
-            $sql = "SELECT product_id FROM cart WHERE userName = '".$_SESSION['userName']."'";
+            $sql = "SELECT product_id FROM cart WHERE userName = '".$_SESSION['username']."'";
             $con = Db::connect();
             $result = $con->query($sql);
             if($result){
@@ -216,9 +216,9 @@ class Product {
     public static function findSearchedProducts($product)
     {
         global $db;
-        $sql = "SELECT * FROM products WHERE name LIKE ?";
-        $data = ['%'.trim($product).'%'];
-        return $db->pdoQuery($sql, $data)->aResults;
+        $sql = "SELECT * FROM products WHERE name LIKE '%".trim($product)."%'";
+//        $data = ['%'.trim($product).'%'];
+        return $db->pdoQuery($sql)->aResults;
     }
 
     public static function  deleteProduct($product)
@@ -227,4 +227,44 @@ class Product {
         $sql = "DELETE FROM products WHERE product_id = '". $product."'";
         return $db->pdoQuery($sql, ['product_id', $product])->showQuery();
     }
+
+    public static function productIsAvailable($product_id)
+    {
+        global $db;
+        $available = false;
+        $db->select('products', ['quantity'], ['product_id' => $product_id]);
+        $result = $db->aResults[0]['quantity'];
+        if($result != 0){
+            $available = true;
+        }
+        return $available;
+
+    }
+
+    public static function reduceProductCount($quantity, $product_id)
+    {
+        global $db;
+        $reduced = false;
+//        get the quantity value for the product selected...
+        $db->select('products', ['quantity'], ['product_id' => $product_id]);
+        $result = $db->aResults[0]['quantity'];
+        $new_quantity = (int)($result) - $quantity;
+        if(!($new_quantity <= 0) ){
+            $db->update('products', ['quantity'=> $new_quantity], ['product_id' => $product_id]);
+            $reduced = true;
+        }
+
+        return $reduced;
+
+    }
+
+    public static function    quantityAvailable($product_id)
+    {
+        global $db;
+        $db->select('products', ['quantity'], ['product_id' => $product_id]);
+        return (int)$db->aResults[0]['quantity'];
+    }
+
+
+
 } 

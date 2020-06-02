@@ -7,6 +7,8 @@
  */
 
 require_once '../../private/init.php';
+//require_admin_login();
+$title = "Add product";
 require_once SHARED_PATH . '/header.php';
 require_once SHARED_PATH . '/header_nav.php';
 
@@ -23,7 +25,8 @@ if(isset($_POST['add']))
     $arg['category'] = $_POST['category'];
     $arg['quantity'] = $_POST['qty'];
     $product = new Product($arg);
-    $product->addProduct();
+    if($product->addProduct())
+        echo "<script>confirm('product added successfullly...')</script>";
 }
 
 

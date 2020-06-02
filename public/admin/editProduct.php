@@ -7,6 +7,7 @@
  */
 
 require_once '../../private/init.php';
+//require_admin_login();
 $title = "Update Product Detail";
 require_once SHARED_PATH . '/header.php';
 require_once SHARED_PATH . '/header_nav.php';
@@ -24,7 +25,7 @@ if(isset($_POST['add']))
     $arg['quantity'] = $_POST['qty'];
     $product = new Product($arg);
     $product->updateProduct($_GET['product_id']);
-    header("location: allProducts.php");
+    header("location: index.php");
 }
 else{
     $product = Product::findProduct($_GET['product_id']);
@@ -65,12 +66,12 @@ else{
 
                 <div class="form-group">
                     <label for="desc">Product Description</label>
-                    <input class="form-control" id="desc" type="text" required="" name="desc" value="<?= $desc=  $product['description'] ?? '' ?>"/>
+                    <input class="form-control" id="desc" type="text" required="" name="desc" value="<?= $desc =  $product['description'] ?? '' ?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="pic">Product Image</label>
-                    <input class="form-control" id="pic" type="file" required="" name="pic" value="$img"/>
+                    <input class="form-control" id="pic" type="file" required="" name="pic" value="<?= $img ?>"/>
                 </div>
 
                 <div class="form-group">
