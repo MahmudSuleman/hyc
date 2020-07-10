@@ -9,32 +9,40 @@ include_once SHARED_PATH . '/header_nav.php';
 
 ?>
 
-    <div class="container">
+<div class="container">
 
-        <div class="search-area">
-            <div class="search-form">
-                <form class="form-inline" method="get">
-                    <div class="form-group">
-                        <input type="text" id="search_input" class="form-control" placeholder="search here"/>
-                    </div>
-                </form>
-            </div>
-            <div class="display-area" id="display_area">
-
-            </div>
+    <div class="search-area">
+        <div class="search-form">
+            <form class="form-inline" method="get">
+                <div class="form-group">
+                    <input type="text" id="search_input" class="form-control" placeholder="search here" />
+                </div>
+            </form>
+        </div>
+        <div class="display-area" id="display_area">
 
         </div>
 
     </div>
+
+</div>
+
+<script src="../../node_modules/popper.js/dist/popper.min.js"></script>
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
 <script>
     var name_input = document.getElementById('search_input');
     var name = document.getElementById('search_input').value;
     var display = document.getElementById('display_area');
-    function search(){
+
+    function search() {
         var xhr = new XMLHttpRequest();
-        xhr.open('get', 'search_data.php?name='+ name, true);
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState == 4 && xhr.status == 200){
+        xhr.open('get', 'search_data.php?name=' + name, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 display.innerHTML = xhr.responseText;
             }
         }
@@ -44,8 +52,4 @@ include_once SHARED_PATH . '/header_nav.php';
     name_input.addEventListener('change', search);
 </script>
 
-<?php
-include_once SHARED_PATH . '/footer_nav.php';
-include_once SHARED_PATH . '/footer.php';
-?>
-
+</html>
