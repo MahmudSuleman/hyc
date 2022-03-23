@@ -13,6 +13,9 @@ $title = "Add product";
 require_once SHARED_PATH . '/header.php';
 require_once SHARED_PATH . '/header_nav.php';
 
+//get product categories
+$allCategories = $db->select('categories', [])->results();
+
 
 
 
@@ -22,7 +25,7 @@ if (isset($_POST['add'])) {
     $arg['name'] = $_POST['name'];
     $arg['price'] = $_POST['price'];
     $arg['description'] = $_POST['desc'];
-    $arg['category'] = $_POST['category'];
+    $arg['category_id'] = $_POST['category_id'];
     $arg['quantity'] = $_POST['qty'];
     $product = new Product($arg);
     if ($product->addProduct())
@@ -49,10 +52,11 @@ if (isset($_POST['add'])) {
 
             <div class="form-group">
                 <label for="category">Product Category</label>
-                <select name="category" id="category" class="form-control">
-                    <option value="men">Men</option>
-                    <option value="women">Women</option>
-                    <option value="babies">Babies</option>
+                <select name="category_id" id="category" class="form-control">
+                    <option value="">Please choose category</option>
+                    <?php foreach($allCategories as $category):?>
+                        <option value="<?= $category['id']; ?>"><?= $category['category'] ?></option>
+                    <?php endforeach;?>
                 </select>
             </div>
 

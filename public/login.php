@@ -5,14 +5,13 @@
  * Date: 3/4/2020
  * Time: 3:43 AM
  */
-
 require_once '../private/init.php';
 $title = 'Login';
 require '../private/includes/header.php';
 //require '../private/includes/header_nav.php';
 
 if(isset($_POST['submit'])){
-	if(User::signin($_POST['userName'], $_POST['password'])){
+	if(User::signin($_POST['username'], $_POST['password'])){
 		echo 'ok';
 		header("location: index.php");
 	}
@@ -27,7 +26,7 @@ if(isset($_POST['submit'])){
 		<form action="login.php" method="post">
 			<div class="form-group">
 				<label for="username">Username/Email</label>
-				<input type="text" class="form-control" id="username" name="userName">
+				<input type="text" class="form-control" id="username" name="username">
 			</div>
 
 			<div class="form-group">

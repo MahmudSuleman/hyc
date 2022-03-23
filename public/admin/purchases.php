@@ -7,6 +7,7 @@ include_once SHARED_PATH . '/header.php';
 include_once SHARED_PATH . '/header_nav.php';
 
 $purchase = Purchase::allPurchases();
+
 if (!empty($purchase)) {
 ?>
 
@@ -26,10 +27,10 @@ if (!empty($purchase)) {
                     <td><?= $p['username'] ?></td>
                     <td><?= $p['purchase_date'] ?></td>
                     <td><?= $p['purchase_status'] ?></td>
-                    <?php if ($p['purchase_status'] == 'pending') : ?>
+                    <?php if ($p['purchase_status_id'] == 1) : ?>
                         <td><a href="<?php echo url_for('admin/confirmDelivery.php?status=pending&id=' . $p['purchase_id']); ?>" class="btn btn-outline-primary">Confirm Delivery</a></td>
                     <?php endif ?>
-                    <?php if ($p['purchase_status'] == 'delivered') : ?>
+                    <?php if ($p['purchase_status_id'] == 4) : ?>
                         <td><a href="<?php echo url_for('admin/confirmDelivery.php?status=delivered&id=' . $p['purchase_id']); ?>" class="btn btn-outline-danger">Revert Delivery</a></td>
                     <?php endif ?>
 

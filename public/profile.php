@@ -15,11 +15,11 @@ try {
     if (isset($_POST['update']))
     {
         $arg = [];
-        $arg['firstName'] = $_POST['firstName'];
-        $arg['lastName'] = $_POST['lastName'];
+        $arg['firstname'] = $_POST['firstname'];
+        $arg['lastname'] = $_POST['lastname'];
         $arg['email'] = $_POST['email'];
         $arg['phone'] = $_POST['phone'];
-        $arg['address'] = $_POST['address'];
+//        $arg['address'] = $_POST['address'];
 
 
         $user = new User($arg);
@@ -42,13 +42,13 @@ try {
             <h2 class="form-title">Update Profile</h2>
             <form action="profile.php" method="post">
                 <div class="form-group">
-                    <label for="firstName">FirstName</label>
-                    <input required type="text" class="form-control" id="firstName" name="firstName" value="<?= $user['firstName']?>">
+                    <label for="firstname">FirstName</label>
+                    <input required type="text" class="form-control" id="firstname" name="firstname" value="<?= $user['firstname']?>">
                 </div>
 
                 <div class="form-group">
-                    <label for="lastName">lastName</label>
-                    <input required type="text" class="form-control" id="lastName" name="lastName" value="<?= $user['lastName']?>">
+                    <label for="lastname">lastname</label>
+                    <input required type="text" class="form-control" id="lastname" name="lastname" value="<?= $user['lastname']?>">
                 </div>
 
                 <div class="form-group">
@@ -61,10 +61,10 @@ try {
                     <input required type="text" class="form-control" id="phone" name="phone" value="<?= $user['phone']?>">
                 </div>
 
-                <div class="form-group">
-                    <label  for="address">Address(City, Area, Street name, landmark)</label>
-                    <input class="form-control" name="address" value="<?= $user['address']?>">
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label  for="address">Address(City, Area, Street name, landmark)</label>-->
+<!--                    <input class="form-control" name="address" value="--><?//= $user['address']?><!--">-->
+<!--                </div>-->
 
                 <div class="form-group">
                     <button class="btn btn-outline-success btn-block" name="update" type="submit">Update Profile</button>

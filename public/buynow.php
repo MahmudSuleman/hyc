@@ -56,9 +56,9 @@ $_SESSION['product_id'] = $_GET['product_id'];
 
         <div class="address-box">
             <p class="title">Your product wil be sent to this address</p>
-            <p><?php echo  $user['firstName'] . ' ' . $user['lastName']; ?></p>
+            <p><?php echo  $user['firstname'] . ' ' . $user['lastname']; ?></p>
             <p><?= $user['phone']; ?></p>
-            <p><?= $user['address']; ?></p>
+            <p><?php // $user['address']; ?></p>
 
             <p style="font-style: italic;">You can consider updating your personal information
                 <a href="<?php echo url_for('profile.php') ?>" target="_blank">here</a> before confirming the order.</p>

@@ -488,7 +488,7 @@ class PdoWrapper extends PDO {
      * @param string $sTable
      * @param array $aData
      *
-     * @return number last insert ID
+     *
      */
     public function insert( $sTable, $aData = array() ) {
         // check if table name not empty
@@ -652,7 +652,7 @@ class PdoWrapper extends PDO {
      * @param array $aWhere
      * @param string $sOther
      *
-     * @return number
+     * @return PdoWrapper
      */
     public function update( $sTable = '', $aData = array(), $aWhere = array(), $sOther = '' ) {
         // if table name is empty

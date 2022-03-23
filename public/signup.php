@@ -17,8 +17,6 @@ if (isset($_POST['signup']))
 	$arg['password'] = $_POST['password'];
 	$arg['password2'] = $_POST['password2'];
 
-
-
 	if ($_POST['password2'] == $_POST['password'])
 	{
 		$user = new User($arg);
@@ -27,7 +25,7 @@ if (isset($_POST['signup']))
         redirect_to(url_for('login.php'));
 	}else{
         global $errors;
-        array_push($errors, 'password do not match...');
+        array_push($errors, 'password do not match.');
     }
 
 

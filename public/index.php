@@ -6,24 +6,22 @@
  * Time: 11:10
  *
  */
+
+
 $title = "Homepage";
 require_once '../private/init.php';
 require_once '../private/includes/header.php';
 require_once '../private/includes/header_nav.php';
-
-
 $products = Product::allProducts();
 
-
+//pretty_print((new Category())->update(['category' => 'new one1'], ['idll'=>90]));
 ?>
 
 <!--    header section definition-->
 <div class="row header">
 
-
 <!--        slide show section definition-->
     <div class="slide-show container">
-
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

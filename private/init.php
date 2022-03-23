@@ -57,7 +57,7 @@ function raw_u($string=""){return rawurlwncode($string);}
 function h($string=""){return htmlspecialchars($string);}
 
 function redirect_to($location){
-    return header('Location: '.$location);
+    header('Location: '.$location);
 }
 
 function require_login(){
@@ -73,4 +73,15 @@ function require_login(){
 
 $errors = [];
 
-//die("helo");
+function dd($value){
+   var_dump($value);
+   die();
+}
+
+function pretty_print($value){
+    echo '<pre>';
+    print_r($value);
+    echo '</pre>';
+
+    die();
+}

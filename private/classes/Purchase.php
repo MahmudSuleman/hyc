@@ -26,7 +26,7 @@ class Purchase {
 
     public  static  function  allPurchases(){
         global $db;
-        return $db->pdoQuery("SELECT * FROM purchases")->aResults;
+        return $db->pdoQuery("SELECT * FROM all_purchases")->aResults;
     }
 
     public static function myPurchases(){
@@ -39,13 +39,13 @@ class Purchase {
     public  static  function delivered($purchase_id)
     {
         global $db;
-        return $db->update('purchases', ['purchase_status'=>'delivered'], ['purchase_id' => $purchase_id]);
+        return $db->update('purchases', ['purchase_status_id'=>4], ['purchase_id' => $purchase_id]);
     }
 
     public  static  function revert($purchase_id)
     {
         global $db;
-        return $db->update('purchases', ['purchase_status'=>'pending'], ['purchase_id' => $purchase_id]);
+        return $db->update('purchases', ['purchase_status_id'=>1], ['purchase_id' => $purchase_id]);
     }
 
 }

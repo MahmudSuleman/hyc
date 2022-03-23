@@ -38,13 +38,13 @@ class User
 
     public function __construct($args = [])
     {
-        $this->userName = $args['userName'] ?? '';
-        $this->firstName = $args['firstName'] ?? '';
-        $this->lastName = $args['lastName'] ?? '';
+        $this->userName = $args['username'] ?? '';
+        $this->firstName = $args['firstname'] ?? '';
+        $this->lastName = $args['lastname'] ?? '';
         $this->email = $args['email'] ?? '';
         $this->phone = $args['phone'] ?? '';
-        $this->address = $args['address'] ?? '';
-        $this->type = $args['type'] ?? 'user';
+//        $this->address = $args['address'] ?? '';
+        $this->type = $args['type'] ?? 2;
     }
 
 
@@ -52,19 +52,19 @@ class User
     public function create()
     {
         global $db;
-        $db->select('users', [], ['userName' => $this->userName]);
+        $db->select('users', [], ['username' => $this->userName]);
         if(empty($db->aResults))
         {
 //            if the current user is not in the database, create them..
             $data = [
-                'userName' => $this->userName,
-                'firstName' => $this->firstName,
-                'lastName' => $this->lastName,
+                'username' => $this->userName,
+                'firstname' => $this->firstName,
+                'lastname' => $this->lastName,
                 'email' => $this->email,
                 'phone' => $this->phone,
                 'password'=> $this->password,
-                'address' => $this->address,
-                'type' => $this->type
+
+                'user_type_id' => $this->type
             ];
             return $db->insert('users', $data);
         }else{
@@ -76,9 +76,7 @@ class User
     public static function findUser($userName)
     {
         global $db;
-        return $db->pdoQuery('select * from users where userName = ?', [$userName])->result();
-
-
+        return $db->pdoQuery('select * from users where username = ?', [$userName])->result();
     }
 
     public function suggestUserName()
@@ -95,13 +93,12 @@ class User
 
     public static function signin($userName, $password)
     {
-
         $user = self::findUser($userName);
         if(!empty($user) && password_verify($password, $user['password']))
         {
             // set session variable and log user in
             $_SESSION['username'] = $userName;
-            $_SESSION['usertype'] = $user['type'];
+            $_SESSION['usertype'] = $user['user_type_id'];
             return true;
         }else{
             global $errors;
@@ -115,14 +112,14 @@ class User
     {
         global $db;
         $data = [
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'firstname' => $this->firstName,
+            'lastname' => $this->lastName,
             'email' =>$this->email,
             'phone' => $this->phone,
-            'address'=>$this->address,
+//            'address'=>$this->address,
         ];
 
-        $result = $db->update('users', $data, ['userName'=>$_SESSION['username']]) ? true : false;
+        $result = $db->update('users', $data, ['username'=>$_SESSION['username']]) ? true : false;
         return $result;
 
     }
@@ -130,9 +127,9 @@ class User
 
     public static function usertype(){
         global $db;
-        $db->select('users', ['type'], ['username' => $_SESSION['userName']] );
+        $db->select('users', ['user_type_id'], ['username' => $_SESSION['username']] );
         $result = $db->aResults[0];
-        return $result['type'];
+        return $result['user_type_id'];
 
     }
 

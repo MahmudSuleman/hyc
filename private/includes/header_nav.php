@@ -54,9 +54,6 @@
         <li class="nav-item active">
             <a class="nav-link" href="<?php echo url_for('/search.php')?>">search <i class="fa fa-search"></i></a>
         </li>
-
-
-
     </ul>
       <?php
       if(isset($_SESSION['username'])){?>
@@ -75,9 +72,9 @@
               <a class="dropdown-item" href="<?php echo url_for('myProduct.php')?>"><i class="fa fa-user"></i>My Products</a>
             <div class="dropdown-divider"></div>
 
-            <?php if($_SESSION['usertype'] == 'admin'): ?>
+            <?php if($_SESSION['usertype'] == 1): ?>
 <!--                user should not see the admin link if they are not an admin...-->
-            <a class="dropdown-item" href="<?php echo  url_for('admin/index.php') ?>"><i class="fa fa-plus"></i>Admin</a>
+            <a class="dropdown-item" href="<?php echo  url_for('admin/index.php') ?>"><i class="fa fa-plus"></i>Admin Dashboard</a>
             <?php endif ?>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo url_for('logout.php')?>"><i class="fa fa-lock"></i>Logout</a>
