@@ -13,6 +13,7 @@ $title = "Update Product Detail";
 require_once SHARED_PATH . '/header.php';
 require_once SHARED_PATH . '/header_nav.php';
 
+global $db;
 //get product categories
 $allCategories = $db->select('categories', [])->results();
 
@@ -22,14 +23,18 @@ if (isset($_POST['add'])) {
     $arg['name'] = $_POST['name'];
     $arg['price'] = $_POST['price'];
     $arg['description'] = $_POST['desc'];
-    $arg['category'] = $_POST['category'];
+    $arg['category_id'] = $_POST['category_id'];
     $arg['quantity'] = $_POST['qty'];
+    $arg['product_id']  = $_POST['hidden_id'] ?? '';
+    $product = Product::findProduct($arg['product_id']);
+    if(!$product)
+        redirect_to($_SERVER['HTTP_REFERER']);
     $product = new Product($arg);
-    $product->updateProduct($_GET['product_id']);
-    header("location: index.php");
+    $product->updateProduct($arg['product_id']);
+//    redirect_to(url_for('/admin/allProducts.php'));
 } else {
     if(!isset($_GET['product_id']))
-        redirect_to(url_for('/'));
+        redirect_to(url_for('/admin/allProducts.php'));
     $product = Product::findProduct($_GET['product_id']);
     $img = explode('/', $product['image']);
     $img = end($img);
@@ -46,6 +51,7 @@ if (isset($_POST['add'])) {
         <h2 class="form-title">Update Product</h2>
         <form action="editProduct.php?product_id=<?= $product['product_id'] ?>" method="post"
               enctype="multipart/form-data">
+            <input type="text" hidden value="<?= $product['product_id'] ?>" name="hidden_id">
 
             <div class="form-group">
                 <label for="name">Product Name</label>

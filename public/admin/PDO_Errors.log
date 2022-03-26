@@ -1,9 +1,0 @@
-2020-05-20 09:05:27 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.user' doesn't exist: 478
-2020-05-26 06:05:23 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
-2020-05-26 06:05:24 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
-2020-05-26 06:05:20 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
-2020-05-26 06:05:41 :: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound: 478
-2022-03-19 11:03:21 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.purchases' doesn't exist: 352
-2022-03-19 11:03:31 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.categiries' doesn't exist: 478
-2022-03-19 11:03:59 :: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens: 405
-2022-03-23 09:03:33 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'purchase_status' in 'field list': 704

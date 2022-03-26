@@ -33,7 +33,7 @@ $_SESSION['product_id'] = $_GET['product_id'];
                     <form action="confirmOrder.php" method="get">
                         <div class="form-group">
                             <label for="qty">quantity</label>
-                            <input required id="qty"  type="number" min="1" max="<?php echo $available_quantity; ?>" name="qty"/>
+                            <input required id="qty" value="1"  type="number" min="1" max="<?php echo $available_quantity; ?>" name="qty"/>
                         </div>
                         <div class="form-group">
                             <label for="total">Total Price(GHC):</label>

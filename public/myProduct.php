@@ -5,9 +5,6 @@ require '../private/includes/header.php';
 require '../private/includes/header_nav.php';
 
 $products =  Purchase::myPurchases();
-
-//var_dump( $products);
-//die();
 ?>
 
 <div class="container">

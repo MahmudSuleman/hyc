@@ -5,3 +5,4 @@ node_modules/
 test.php
 index1.php
 *.xml
+*.log

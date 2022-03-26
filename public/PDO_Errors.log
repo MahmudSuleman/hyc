@@ -1,7 +1,0 @@
-2022-03-23 08:03:35 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.purchases' doesn't exist: 352
-2022-03-23 08:03:51 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hyc.purchases' doesn't exist: 352
-2022-03-23 08:03:29 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'purchases.unit_price' in 'field list': 352
-2022-03-23 08:03:59 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'purchases.total_price' in 'field list': 352
-2022-03-23 08:03:51 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'purchases.product_id' in 'where clause': 352
-2022-03-23 08:03:50 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'field list': 532
-2022-03-23 08:03:37 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'purchase_id' in 'field list': 532

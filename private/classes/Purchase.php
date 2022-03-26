@@ -31,9 +31,10 @@ class Purchase {
 
     public static function myPurchases(){
         global $db;
-        $sql = "SELECT products.product_id, products.name, products.description, products.image, purchases.unit_price, purchases.total_price, purchases.purchase_date, purchases.purchase_status, purchases.quantity
-                      FROM products INNER JOIN purchases WHERE products.product_id = purchases.product_id";
-        return $db->pdoQuery($sql)->aResults;
+        $sql = "CALL usp_my_purchases(?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([0=> $_SESSION['username']]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public  static  function delivered($purchase_id)

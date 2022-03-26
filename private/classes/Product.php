@@ -67,7 +67,7 @@ class Product
     {
         try {
             $time = date('y/m/d');
-            $sql = "INSERT INTO cart(product_id, date_added, userName) VALUES ('$product_id', '$time', '$userName')";
+            $sql = "INSERT INTO carts(product_id, username) VALUES ('$product_id', '$userName')";
             $con = Db::connect();
             if ($con->query($sql))
                 return true;
@@ -154,16 +154,16 @@ class Product
     public function updateProduct($id)
     {
         try {
+
             $image = self::uploadImage($_FILES, $this->product_id);
             $image = substr($image, 3);
             $con = Db::connect();
             $sql = "UPDATE products SET  name = :name, description = :desc, price = :price
-                          , category = :cat, image = :img, quantity = :qty WHERE product_id = $id";
+                          , category_id = :cat, image = :img, quantity = :qty WHERE product_id = $id";
 
             $stmt = $con->prepare($sql);
 
             $data = [
-
                 ':name' => $this->name,
                 ':desc' => $this->description,
                 ':price' => $this->price,
@@ -192,19 +192,19 @@ class Product
         $fileArray = explode('.', $name);
         $allowed = ['jpg', 'jpeg', 'png'];
         $ext = strtolower(end($fileArray));
-        $loc = '../img/' . uniqid() . '.' . $ext;
+        $loc = '../img/' .$product_id . '.' . $ext;
 
-        if (in_array($ext, $allowed)) {
-            if ($size <= 2000000) {
-                move_uploaded_file($tmpName, $loc);
-                return $loc;
-            } else {
-                echo 'file too big';
-
-            }
-        } else {
-            echo 'Unsupported file format';
+        if(!in_array($ext, $allowed)){
+            die('extension not allowed');
         }
+
+        if($size > 2000000)
+        {
+            die('file too big');
+        }
+
+        move_uploaded_file($tmpName, $loc);
+        return $loc;
 
     }
 
