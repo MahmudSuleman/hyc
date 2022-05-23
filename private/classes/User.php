@@ -69,7 +69,7 @@ class User
             return $db->insert('users', $data);
         }else{
             global $errors;
-            array_push($errors, "failed to create user, username already exist");
+            $errors[] = "failed to create user, username already exist";
         }
     }
 
@@ -102,7 +102,7 @@ class User
             return true;
         }else{
             global $errors;
-            array_push($errors, "Incorrect username and password combination...");
+            $errors[] = "Incorrect username and password combination...";
         }
 
 
@@ -119,8 +119,7 @@ class User
 //            'address'=>$this->address,
         ];
 
-        $result = $db->update('users', $data, ['username'=>$_SESSION['username']]) ? true : false;
-        return $result;
+        return (bool)$db->update('users', $data, ['username' => $_SESSION['username']]);
 
     }
 
@@ -130,7 +129,6 @@ class User
         $db->select('users', ['user_type_id'], ['username' => $_SESSION['username']] );
         $result = $db->aResults[0];
         return $result['user_type_id'];
-
     }
 
     public static function makeAdmin($username){

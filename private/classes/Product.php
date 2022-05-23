@@ -6,21 +6,21 @@
  * Time: 9:27 AM
  */
 
-class Product
+class Product extends  Model
 {
 
     public $product_id;
     public $name;
     public $description;
     public $image;
-    public $category;
+    public $category_id;
     public $price;
     public $quantity;
 
     public function __construct($arg = [])
     {
         $this->name = $arg['name'] ?? '';
-        $this->category = $arg['category'] ?? '';
+        $this->category_id = $arg['category_id'] ?? '';
         $this->description = $arg['description'] ?? '';
         $this->image = $arg['image'] ?? '';
         $this->product_id = $arg['product_id'] ?? '';
@@ -87,7 +87,7 @@ class Product
             $result = $con->query($sql);
 
             foreach ($result->fetchAll(PDO::FETCH_ASSOC) as $data) {
-                array_push($products, $data['product_id']);
+                $products[] = $data['product_id'];
             }
 
             $errorInfo = $con->errorInfo();
@@ -123,8 +123,6 @@ class Product
     public function addProduct()
     {
         try {
-            $image = self::uploadImage($_FILES, $this->product_id);
-            $image = substr($image, 3);
             $con = Db::connect();
             $sql = "INSERT INTO products(product_id, name, description, price, category_id, image, quantity)
                     VALUES (:p_id, :name, :desc, :price, :cat, :img, :qty)";
@@ -135,14 +133,14 @@ class Product
                 ':name' => $this->name,
                 ':desc' => $this->description,
                 ':price' => $this->price,
-                ':cat' => $this->category,
+                ':cat' => $this->category_id,
                 ':qty' => $this->quantity,
-                ':img' => $image
+                ':img' => $this->image
             ];
 
             $errorInfo = $stmt->errorInfo();
             if (isset($errorInfo[2])) {
-                echo $errorInfo[2];
+               return  false;
             } else {
                 return $stmt->execute($data);
             }
@@ -154,9 +152,6 @@ class Product
     public function updateProduct($id)
     {
         try {
-
-            $image = self::uploadImage($_FILES, $this->product_id);
-            $image = substr($image, 3);
             $con = Db::connect();
             $sql = "UPDATE products SET  name = :name, description = :desc, price = :price
                           , category_id = :cat, image = :img, quantity = :qty WHERE product_id = $id";
@@ -167,9 +162,9 @@ class Product
                 ':name' => $this->name,
                 ':desc' => $this->description,
                 ':price' => $this->price,
-                ':cat' => $this->category,
+                ':cat' => $this->category_id,
                 ':qty' => $this->quantity,
-                ':img' => $image
+                ':img' => $this->image
             ];
 
             $errorInfo = $stmt->errorInfo();
@@ -183,30 +178,6 @@ class Product
         }
     }
 
-    public static function uploadImage($files, $product_id)
-    {
-        $file = $files['pic'];
-        $name = $file['name'];
-        $size = $file['size'];
-        $tmpName = $file['tmp_name'];
-        $fileArray = explode('.', $name);
-        $allowed = ['jpg', 'jpeg', 'png'];
-        $ext = strtolower(end($fileArray));
-        $loc = '../img/' .$product_id . '.' . $ext;
-
-        if(!in_array($ext, $allowed)){
-            die('extension not allowed');
-        }
-
-        if($size > 2000000)
-        {
-            die('file too big');
-        }
-
-        move_uploaded_file($tmpName, $loc);
-        return $loc;
-
-    }
 
     public static function findSearchedProducts($product)
     {
@@ -219,8 +190,9 @@ class Product
     public static function deleteProduct($product)
     {
         global $db;
-        $sql = "DELETE FROM products WHERE product_id = '" . $product . "'";
-        return $db->pdoQuery($sql, ['product_id', $product])->showQuery();
+        $sql = "DELETE FROM products WHERE product_id = ?";
+
+        return $db->pdoQuery($sql, [$product])->showQuery();
     }
 
     public static function productIsAvailable($product_id)

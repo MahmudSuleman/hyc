@@ -2,6 +2,6 @@
 
 class Category extends Model
 {
-    public $table='categories';
+    public string $table='categories';
 
 }

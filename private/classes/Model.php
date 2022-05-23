@@ -2,8 +2,8 @@
 
 abstract class Model
 {
-    public $connection;
-    public $table= '';
+    public PdoWrapper $connection;
+    public string $table= '';
 
 
     /**
@@ -17,9 +17,9 @@ abstract class Model
     }
 
 
-    public function find($id)
+    public function findById($id)
     {
-        return $this->connection->select($this->table,[$id])->result();
+        return $this->connection->select($this->table,[],['id' => $id])->result();
     }
 
     public function insert($data): int

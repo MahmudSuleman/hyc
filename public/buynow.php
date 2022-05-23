@@ -67,13 +67,13 @@ $_SESSION['product_id'] = $_GET['product_id'];
 
 <script>
     function update_total(){
-        var unit_price = document.getElementById('unit_price').value;
-        var qty = document.getElementById('qty').value;
-        var total = unit_price * qty;
+        const unit_price = document.getElementById('unit_price').value;
+        const qty = document.getElementById('qty').value;
+        const total = unit_price * qty;
         document.getElementById('total_price').setAttribute('value', total.toString());
     }
 
-    var number_input = document.getElementById('qty');
+    const number_input = document.getElementById('qty');
     number_input.addEventListener('change', update_total);
 </script>
 <?php

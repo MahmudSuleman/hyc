@@ -31,7 +31,7 @@ if (isset($_POST['add'])) {
         redirect_to($_SERVER['HTTP_REFERER']);
     $product = new Product($arg);
     $product->updateProduct($arg['product_id']);
-//    redirect_to(url_for('/admin/allProducts.php'));
+    redirect_to(url_for('/admin/allProducts.php'));
 } else {
     if(!isset($_GET['product_id']))
         redirect_to(url_for('/admin/allProducts.php'));
@@ -84,7 +84,7 @@ if (isset($_POST['add'])) {
 
             <div class="form-group">
                 <label for="pic">Product Image</label>
-                <input class="form-control" id="pic" type="file" required="" name="pic" value="<?= $img ?>"/>
+                <input class="form-control" id="pic" type="file"  name="pic" value="<?= $img ?>"/>
             </div>
 
             <div class="form-group">

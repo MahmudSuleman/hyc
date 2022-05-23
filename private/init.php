@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 ob_start();
 session_start();
 
@@ -57,24 +60,28 @@ function require_login(){
     if(empty($_SESSION['username']))
         redirect_to(url_for('/login.php'));
 }
-//function require_admin_login(){
-//    if($_SESSION['usertype'] != 'admin'){
-//        redirect_to(url_for('/index.php'));
-//    }
-//
-//}
 
-$errors = [];
-
-function dd($value){
+#[NoReturn] function dd($value){
    var_dump($value);
    die();
 }
 
+/**
+ * @param $value
+ * @return void
+ */
 function pretty_print($value){
     echo '<pre>';
     print_r($value);
     echo '</pre>';
-
     die();
+}
+
+function errors($key = null){
+    return $key ? Sessions::get_error($key) : Sessions::get_error() ;
+}
+
+function error_message($field):string
+{
+    return errors($field)  ? "<p class='text-danger'>* ". errors($field) ."</p>" : '';
 }

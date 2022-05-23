@@ -52,7 +52,7 @@ if (isset($_SESSION['username'])) {
                         <td><?= $data['price']; ?></td>
                         <td><a href="buynow.php?product_id=<?= $data['product_id']; ?>"
                                class="btn btn-outline-buy  fa fa-money">Buy Now</a></td>
-                        <td><a href="removeProduct.php?product_id=<?= $data['product_id']; ?>"
+                        <td><a href="remove_product.php?product_id=<?= $data['product_id']; ?>"
                                class="btn btn-outline-remove fa fa-remove">Remove</a></td>
                     </tr>
 
